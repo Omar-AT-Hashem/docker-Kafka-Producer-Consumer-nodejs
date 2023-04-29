@@ -15,8 +15,7 @@ services:
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
       - KAFKA_ADVERTISED_LISTENERS:=PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-   
+      - ALLOW_PLAINTEXT_LISTENER=yes 
     depends_on:
       - zookeeper
   db:
@@ -31,11 +30,6 @@ services:
     ports:
       - 3306:3306
     
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8082:8082
   consumer:
     image: sa2-project/customer
     environment:
@@ -43,7 +37,6 @@ services:
       KAFKA_HOST: kafka:9092
     ports:
       - 5002:5002 
-   
     depends_on:
       - db
   marketer:
